@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: Main.ma
-//Last modified: Thu, Sep 17, 2020 11:05:39 AM
+//Last modified: Thu, Sep 17, 2020 11:13:47 AM
 //Codeset: UTF-8
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,7 +10,7 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Mac OS X 10.15.6";
-fileInfo "UUID" "0985F36D-CB46-3D6F-B8CA-CDA04BB18C16";
+fileInfo "UUID" "BCB9C6D9-434F-D523-A088-F9832D6A437B";
 createNode transform -s -n "persp";
 	rename -uid "62EDAD03-5242-6FE3-E260-FB8CDFFCF114";
 	setAttr ".v" no;
@@ -60,14 +60,14 @@ createNode camera -s -n "frontShape" -p "front";
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode transform -s -n "side";
 	rename -uid "150D12A8-0845-448B-37AE-1985C73BDA17";
-	setAttr ".t" -type "double3" 1000.1 4.7471523091533765 -3.1904200076619693 ;
+	setAttr ".t" -type "double3" 1000.1 4.9750219283874664 1.3122606270948607 ;
 	setAttr ".r" -type "double3" 0 89.999999999999986 0 ;
 createNode camera -s -n "sideShape" -p "side";
 	rename -uid "2250DEEE-7847-35BD-A520-BDACBAE5630D";
 	setAttr -k off ".v";
 	setAttr ".rnd" no;
 	setAttr ".coi" 1000.1;
-	setAttr ".ow" 3.5878021135375291;
+	setAttr ".ow" 6.7675265680885675;
 	setAttr ".imn" -type "string" "side";
 	setAttr ".den" -type "string" "side_depth";
 	setAttr ".man" -type "string" "side_mask";
@@ -699,6 +699,31 @@ createNode deleteComponent -n "deleteComponent72";
 createNode deleteComponent -n "deleteComponent73";
 	rename -uid "CE471993-514B-0A4E-2626-B98F4EF38475";
 	setAttr ".dc" -type "componentList" 1 "e[249]";
+createNode deleteComponent -n "deleteComponent74";
+	rename -uid "FC6A130D-B14E-A001-F418-F9BE7FD0F93A";
+	setAttr ".dc" -type "componentList" 1 "e[249]";
+createNode deleteComponent -n "deleteComponent75";
+	rename -uid "81F2FF63-5847-A68B-0BED-E5AC93EDA31D";
+	setAttr ".dc" -type "componentList" 1 "f[45]";
+createNode polySplit -n "polySplit36";
+	rename -uid "D3377576-4E43-A70E-A7FF-47B835A3B8C3";
+	setAttr -s 19 ".e[0:18]"  1 0.63293302 0.50514001 0.54565901 0.61206001
+		 0.54056197 0.55353802 0.54706901 0.48280901 0.47487599 0.507936 0.52221602 0.52079201
+		 0.62226403 0.49260101 0.50792497 0.58311403 0.43597701 0.144153;
+	setAttr -s 19 ".d[0:18]"  -2147483617 -2147483519 -2147483554 -2147483409 -2147483598 -2147483582 
+		-2147483599 -2147483597 -2147483596 -2147483595 -2147483594 -2147483593 -2147483591 -2147483590 -2147483588 -2147483587 -2147483585 -2147483568 
+		-2147483648;
+	setAttr ".sma" 180;
+	setAttr ".m2015" yes;
+createNode polySplit -n "polySplit37";
+	rename -uid "047E7732-8640-10A1-9DC7-B29CB8B25341";
+	setAttr -s 18 ".e[0:17]"  1 0.631854 0.53977299 0.57586801 0.56709403
+		 0.55869299 0.52756298 0.60057497 0.53687799 0.556575 0.58862698 0.49369299 0.52598798
+		 0.576796 0.511733 0.485818 0.500305 0.550295;
+	setAttr -s 18 ".d[0:17]"  -2147483622 -2147483517 -2147483552 -2147483535 -2147483536 -2147483537 
+		-2147483538 -2147483539 -2147483540 -2147483541 -2147483542 -2147483543 -2147483544 -2147483545 -2147483546 -2147483547 -2147483548 -2147483647;
+	setAttr ".sma" 180;
+	setAttr ".m2015" yes;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -741,7 +766,7 @@ connectAttr ":defaultColorMgtGlobals.cfe" "imagePlaneShape2.cmcf";
 connectAttr ":defaultColorMgtGlobals.cfp" "imagePlaneShape2.cmcp";
 connectAttr ":defaultColorMgtGlobals.wsn" "imagePlaneShape2.ws";
 connectAttr ":sideShape.msg" "imagePlaneShape2.ltc";
-connectAttr "deleteComponent73.og" "polySurfaceShape1.i";
+connectAttr "polySplit37.out" "polySurfaceShape1.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -865,6 +890,10 @@ connectAttr "deleteComponent69.og" "deleteComponent70.ig";
 connectAttr "deleteComponent70.og" "deleteComponent71.ig";
 connectAttr "deleteComponent71.og" "deleteComponent72.ig";
 connectAttr "deleteComponent72.og" "deleteComponent73.ig";
+connectAttr "deleteComponent73.og" "deleteComponent74.ig";
+connectAttr "deleteComponent74.og" "deleteComponent75.ig";
+connectAttr "deleteComponent75.og" "polySplit36.ip";
+connectAttr "polySplit36.out" "polySplit37.ip";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "polySurfaceShape1.iog" ":initialShadingGroup.dsm" -na;
 // End of Main.ma
